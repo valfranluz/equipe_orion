@@ -1,0 +1,121 @@
+Sintoma,Risco
+Sepse,93
+Pneumonia resistente,83
+Infecção hospitalar,85
+Endocardite bacteriana,82
+Meningite bacteriana,76
+Infecção de ferida cirúrgica,93
+Peritonite,86
+Osteomielite,88
+Fístula purulenta,90
+Abcesso crônico,91
+Celulite resistente,79
+Pielonefrite,89
+Uretrite crônica,77
+Cistite resistente,84
+Otite crônica,82
+Dermatite supurativa,87
+Hepatite infecciosa,75
+Gastroenterite bacteriana,85
+Colite ulcerativa,94
+Enterite necrosante,87
+Broncopneumonia,84
+Sinusite bacteriana,87
+Artrite séptica,91
+Tenossinovite infecciosa,86
+Miocardite bacteriana,92
+Placentite,91
+Mastite resistente,90
+Endometrite crônica,85
+Prostatite bacteriana,91
+Orquite infecciosa,80
+Uveíte infecciosa,79
+Conjuntivite bacteriana,84
+Glomerulonefrite,86
+Insuficiência hepática,92
+Insuficiência renal,82
+Falência multiorgânica,88
+Choque séptico,91
+Infecção sistêmica,76
+Bacteremia,85
+Septicemia,78
+Meningoencefalite,77
+Pleurite bacteriana,80
+Pericardite infecciosa,84
+Encefalite bacteriana,88
+Espondilodiscite,90
+Poliartrite,95
+Piometra,93
+Abscesso hepático,85
+Linfadenite infecciosa,93
+Infecção de prótese,87
+Infecção de cateter,84
+Infecção urinária resistente,87
+Infecção respiratória resistente,85
+Infecção gastrointestinal resistente,92
+Infecção de pele resistente,90
+Infecção óssea resistente,85
+Infecção ocular resistente,80
+Infecção cardíaca resistente,81
+Infecção sistêmica resistente,87
+Infecção multirresistente,85
+Falência renal,90
+Convulsão,80
+Dificuldade respiratória,75
+Hemorragia interna,85
+Febre,25
+Hipotermia,50
+Apatia,30
+Vômito,20
+Diarreia,10
+Letargia,35
+Anorexia,40
+Desidratação,45
+Prostração,60
+Convulsões frequentes,90
+Arritmia cardíaca,70
+Parada cardiorrespiratória,99
+Secreção nasal,15
+Tosse,20
+Cianose,85
+Incoordenação motora,65
+Oftalmoplegia,70
+Hiperglicemia,40
+Hipoglicemia,50
+Paresia,80
+Paralisia,85
+Hematoquezia,60
+Melena,75
+Anúria,90
+Poliúria,85
+Edema pulmonar,95
+Taquicardia,60
+Bradicardia,55
+Hipotensão,50
+Hipertensão,60
+Desnutrição,40
+Ascite,45
+Síncope,70
+Sialorreia,30
+Piodermite,25
+Dermatite,20
+Otite,25
+Glaucoma,30
+Uveíte,35
+Coagulopatia,75
+Anemia,60
+Leucocitose,50
+Leucopenia,55
+Trombocitopenia,50
+Esofagite,60
+Gastrite,45
+Enterite,40
+Colite,50
+Hepatite,55
+Nefrite,65
+Miosite,60
+Artrite,55
+Fratura,70
+Luxação,65
+Torcicolo,60
+Sintoma adicional 120,70
