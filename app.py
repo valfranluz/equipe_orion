@@ -1,8 +1,31 @@
 import streamlit as st
 import pandas as pd
 import os
+import joblib
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
 
 st.set_page_config(page_title="All Care Vet - Análise Preditiva", layout="wide")
+
+# Inicializa o vetor
+vectorizer = TfidfVectorizer()
+
+# ✅ Função atualizada com remoção de NaN e campos vazios
+def treinar_modelo():
+    if os.path.exists('data/novos_casos.csv'):
+        df = pd.read_csv('data/novos_casos.csv', encoding='utf-8', names=['anamnese', 'decisao', 'dias_prev', 'maior_risco'])
+
+        # ✅ Remover registros inválidos em anamnese e decisao
+        df = df.dropna(subset=['anamnese', 'decisao'])
+        df = df[(df['anamnese'].astype(str).str.strip() != '') & (df['decisao'].astype(str).str.strip() != '')]
+
+        if len(df) >= 3:
+            X = vectorizer.fit_transform(df['anamnese'].astype(str))
+            y = df['decisao'].astype(str)
+
+            modelo = LogisticRegression(max_iter=1000)
+            modelo.fit(X, y)
+            joblib.dump(modelo, 'modelo_classificador.pkl')
 
 # Carregar banco de sintomas e riscos
 sintomas_risco = pd.read_csv('data/sintomas_risco.csv', encoding='utf-8')
@@ -20,12 +43,7 @@ def calcular_decisao_e_dias(maior_risco):
         dias = 3
     else:
         dias = 1
-
-    if maior_risco >= 50:
-        decisao = "Internar"
-    else:
-        decisao = "Medicar e enviar para casa"
-
+    decisao = "Internar" if maior_risco >= 50 else "Medicar e enviar para casa"
     return decisao, dias
 
 # Controle de estado
@@ -55,17 +73,9 @@ with col1:
                 else:
                     texto = anamnese.strip()
                     texto_lower = texto.lower()
-                    riscos_identificados = []
+                    riscos_identificados = [(sintoma, risco) for sintoma, risco in sintomas_dict.items() if sintoma in texto_lower]
 
-                    for sintoma, risco in sintomas_dict.items():
-                        if sintoma in texto_lower:
-                            riscos_identificados.append((sintoma, risco))
-
-                    if riscos_identificados:
-                        maior_risco = max(r[1] for r in riscos_identificados)
-                    else:
-                        maior_risco = 0
-
+                    maior_risco = max([r[1] for r in riscos_identificados], default=0)
                     decisao, dias_prev = calcular_decisao_e_dias(maior_risco)
 
                     resultado = f"**Decisão:** {decisao}\n\n"
@@ -93,7 +103,10 @@ with col1:
                     with open('data/novos_casos.csv', mode='a', newline='', encoding='utf-8') as f:
                         f.write(",".join(map(str, novos_dados)) + "\n")
 
-                    st.rerun()  # Força atualização imediata
+                    # ✅ Auto-retreinamento com segurança
+                    treinar_modelo()
+
+                    st.rerun()
 
     else:
         st.subheader("Resultado da Análise")
